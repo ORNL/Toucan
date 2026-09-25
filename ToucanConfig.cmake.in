@@ -1,0 +1,16 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(Kokkos)
+find_dependency(MPI COMPONENTS CXX)
+find_dependency(OpenMP)
+find_dependency(Stork)
+find_dependency(nlohmann_json)
+
+set(ToucanCore_WITH_CONDOR "@TOUCAN_ENABLE_CONDOR@")
+if(ToucanCore_WITH_CONDOR)
+    find_dependency(Condor)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/ToucanTargets.cmake")
